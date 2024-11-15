@@ -18,4 +18,4 @@ const orderSchema = new mongoose.Schema({
     },
 }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
 
-module.exports = orderSchema;
+module.exports = (connection) => connection.model("User", orderSchema);;

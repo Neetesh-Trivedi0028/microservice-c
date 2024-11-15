@@ -22,4 +22,4 @@ const userSchema = new mongoose.Schema({
     },
 }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
 
-module.exports = userSchema;
+module.exports = (connection) => connection.model("User", userSchema);;
