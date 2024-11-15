@@ -1,19 +1,22 @@
 const mongoose = require("mongoose");
 
-module.exports = (dbConfig) => {
-    const connections = {};
+const connectDB = (uri, options = {}) => {
+    const connection = mongoose.createConnection(uri, options);
 
-    Object.entries(dbConfig).forEach(([key, uri]) => {
-        const db = mongoose.createConnection(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+    connection.on("connected", () => console.log(`Connected to ${uri}`));
+    connection.on("error", (err) => console.error(`Connection error on ${uri}:`, err));
+    connection.on("disconnected", () => console.log(`Disconnected from ${uri}`));
 
-        db.on("connected", () => console.log(`Connected to ${key} database`));
-        db.on("error", (err) => console.error(`Error in ${key} database:`, err));
+    return connection;
+};
 
-        connections[key] = db;
-    });
+// Initialize connections for each database
+const microserviceA = connectDB("mongodb://localhost:27017/microserviceA");
+const microserviceB = connectDB("mongodb://localhost:27017/microserviceB");
+const microserviceC = connectDB("mongodb://localhost:27017/microserviceC");
 
-    return connections;
+module.exports = {
+    microserviceA,
+    microserviceB,
+    microserviceC,
 };
