@@ -10,13 +10,15 @@ const connectDB = (uri, options = {}) => {
     return connection;
 };
 
-// Initialize connections for each database
-const microserviceA = connectDB("mongodb://localhost:27017/microserviceA");
-const microserviceB = connectDB("mongodb://localhost:27017/microserviceB");
-const microserviceC = connectDB("mongodb://localhost:27017/microserviceC");
+module.exports = connectDB;
 
-module.exports = {
-    microserviceA,
-    microserviceB,
-    microserviceC,
-};
+// Initialize connections for each database
+// const microserviceA = connectDB("mongodb://localhost:27017/microserviceA");
+// const microserviceB = connectDB("mongodb://localhost:27017/microserviceB");
+// const microserviceC = connectDB("mongodb://localhost:27017/microserviceC");
+
+// module.exports = {
+//     microserviceA,
+//     microserviceB,
+//     microserviceC,
+// };
