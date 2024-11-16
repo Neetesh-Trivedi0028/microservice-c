@@ -7,4 +7,11 @@ const orderSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
 }, { timestamps: true });
 
+module.exports = orderSchema;
+
+/* method 1:    for reference code this approach 
+
 module.exports = (connection) => connection.model("Order", orderSchema);
+
+
+*/
